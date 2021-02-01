@@ -21,29 +21,41 @@ public class PlayerController : MonoBehaviour
     private Rigidbody playerRigidbody;
     public Light flashlight;
 
+    public Transform playerSpawn;
+
+    public InputAction fireInput;
+    public Transform bulletSpot;
+    public GameObject projectile;
+
     private void Awake()
     {
         playerTransform = transform;
         playerRigidbody = GetComponent<Rigidbody>();
-
+        //fireInput = GetComponent<InputAction>();
     }
 
     public void OnMove(InputValue value)
     {
-        Debug.Log(value.Get());
         moveVector = value.Get<Vector2>();
     }
 
     public void OnLook(InputValue value)
     {
-        Debug.Log(value.Get());
         lookVector = value.Get<Vector2>();
     }
     
-    public void OnFire(InputValue value)
-    {
-        isFiring = value.Get<bool>();
-    }
+    //public void OnFire(InputValue value)
+    //{
+    //    PlayerInputs.performed += value;
+    //    if (value.performed)
+    //    {
+    //        isFiring = true;
+    //    }
+    //    else if(value.canceled)
+    //    {
+    //        isFiring = false;
+    //    }
+    //}
 
     private void Update()
     {
@@ -57,14 +69,45 @@ public class PlayerController : MonoBehaviour
         PlayerRotation.y += RotationX;
         playerTransform.rotation = Quaternion.Euler(PlayerRotation);
 
-        if(isFiring)
+        
+        if(fireInput.triggered)
         {
-            flashlight.intensity = 5;
-        }
-        else
-        {
-            flashlight.intensity = 3;
+            StartCoroutine(Fire());
         }
         //playerTransform.rotation = lookVector * Time.deltaTime;
+    }
+
+    IEnumerator Fire()
+    {
+        flashlight.intensity = 5;
+        yield return new WaitForSeconds(1f);
+        Instantiate(projectile, bulletSpot);
+        flashlight.intensity = 3;
+    }
+
+    private void OnEnable()
+    {
+        fireInput.Enable();
+    }
+
+    private void OnDisable()
+    {
+        fireInput.Disable();
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        Debug.Log("Working");
+        if(collision.gameObject.CompareTag("DeathPlane"))
+        {
+            transform.position = playerSpawn.position;
+        }
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("DeathPlane"))
+        {
+            transform.position = playerSpawn.position;
+        }
     }
 }
