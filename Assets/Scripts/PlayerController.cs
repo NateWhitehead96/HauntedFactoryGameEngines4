@@ -81,7 +81,14 @@ public class PlayerController : MonoBehaviour
     {
         flashlight.intensity = 5;
         yield return new WaitForSeconds(1f);
-        Instantiate(projectile, bulletSpot);
+        projectile = ProjectilePool.Instance.GetBullet();
+        if(projectile != null)
+        {
+            projectile.transform.position = bulletSpot.position;
+            projectile.transform.rotation = bulletSpot.rotation;
+            //projectile.GetComponent<ProjectileScript>().maxSpeed = 10;
+            projectile.SetActive(true);
+        }
         flashlight.intensity = 3;
     }
 
@@ -99,13 +106,6 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Working");
         if(collision.gameObject.CompareTag("DeathPlane"))
-        {
-            transform.position = playerSpawn.position;
-        }
-    }
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("DeathPlane"))
         {
             transform.position = playerSpawn.position;
         }

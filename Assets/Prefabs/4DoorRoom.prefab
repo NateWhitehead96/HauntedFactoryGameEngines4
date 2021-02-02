@@ -1921,6 +1921,7 @@ GameObject:
   - component: {fileID: 952145722221197821}
   - component: {fileID: 5740102560492241071}
   - component: {fileID: 8387583801037101415}
+  - component: {fileID: 4097953219875729085}
   m_Layer: 3
   m_Name: 4DoorRoom
   m_TagString: Room
@@ -2029,6 +2030,25 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &4097953219875729085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3536517806775145835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04b419ce9ab106141a0774f459fdb9b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 8932955544083866180}
+  - {fileID: 6379642940429498787}
+  - {fileID: 7725123322417325983}
+  - {fileID: 3211923407993383040}
+  - {fileID: 3826682226849891390}
+  Ghost: {fileID: 2871110868839065485, guid: 757467652a0b54d42815d7f70d282ddf, type: 3}
 --- !u!1 &3688263982758175135
 GameObject:
   m_ObjectHideFlags: 0
