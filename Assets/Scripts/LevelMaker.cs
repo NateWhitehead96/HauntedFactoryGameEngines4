@@ -11,25 +11,23 @@ public class LevelMaker : MonoBehaviour
 
     public GameObject[] Rooms;
 
-    public Transform StartPosition;
+    public Transform Origin;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int x = 0; x < rows; x++)
-        {
-            for (int z = 0; z < cols; z++)
-            {
-                int randomRoom = Random.Range(0, Rooms.Length);
-                Vector3 newPos = new Vector3(x * 30 + 30f, 0, z * 30 - 30f);
-                Instantiate(Rooms[randomRoom], newPos, Quaternion.identity);
-            }
-        }
+        //for (int x = 0; x < rows; x++)
+        //{
+        //    for (int z = 0; z < cols; z++)
+        //    {
+        //        int randomRoom = Random.Range(0, Rooms.Length);
+        //        Vector3 newPos = new Vector3(x * 30 + 30f, 0, z * 30 - 30f);
+        //        Instantiate(Rooms[randomRoom], newPos, Quaternion.identity);
+        //    }
+        //}
+        int randomLevel = Random.Range(0, Rooms.Length);
+        Instantiate(Rooms[randomLevel], Origin.position, Quaternion.identity);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }
