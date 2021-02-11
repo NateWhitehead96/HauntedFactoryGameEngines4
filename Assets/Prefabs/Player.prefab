@@ -253,6 +253,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFiring: 0
+  isHurting: 0
   moveSpeed: 5
   VerticalSensitivity: 20
   HorizontalSensitivity: 100
@@ -284,6 +285,8 @@ MonoBehaviour:
       m_Flags: 0
   bulletSpot: {fileID: 1009569930361459501}
   projectile: {fileID: 630285910308251979, guid: fc202c998339a214c8af27a48dbbea93, type: 3}
+  maxHealth: 10
+  healthBar: {fileID: 0}
 --- !u!1 &1009569930361459500
 GameObject:
   m_ObjectHideFlags: 0
