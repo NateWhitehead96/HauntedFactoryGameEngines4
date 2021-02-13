@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     public float VerticalSensitivity = 20f;
     public float HorizontalSensitivity = 20f;
-
+    // Direction variables
     private Vector2 moveVector = Vector2.zero;
     private Vector2 lookVector = Vector2.zero;
     private Vector3 moveDirection = Vector3.zero;
@@ -36,6 +36,8 @@ public class PlayerController : MonoBehaviour
     public static int currentHealth = 10;
     public Slider healthBar;
 
+    // Room completion tally
+    public static int levelsComplete;
     private void Awake()
     {
         playerTransform = transform;
@@ -48,9 +50,11 @@ public class PlayerController : MonoBehaviour
         if(SceneManager.GetSceneByName("TutorialLevel") == SceneManager.GetActiveScene())
         {
             currentHealth = maxHealth;
+            levelsComplete = 0;
         }
         healthBar.maxValue = maxHealth;
         healthBar.value = currentHealth;
+        print(levelsComplete);
     }
 
     public void OnMove(InputValue value)
@@ -70,7 +74,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnFire(InputValue value)
     {
-        if (value.isPressed)
+        if (value.isPressed && isFiring == false)
         {
             StartCoroutine(Fire());
         }

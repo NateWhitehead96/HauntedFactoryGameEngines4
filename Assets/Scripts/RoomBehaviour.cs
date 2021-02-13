@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.AI;
+
 public class RoomBehaviour : MonoBehaviour
 {
     public GameObject[] spawnPoints;
@@ -14,7 +16,8 @@ public class RoomBehaviour : MonoBehaviour
             //int spawnChance = Random.Range(0, 1);
             //if(spawnChance == 1)
             //{
-                Instantiate(Ghost, spawnPoints[i].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+                //Instantiate(Ghost, spawnPoints[i].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+            Instantiate(Ghost, spawnPoints[i].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
             //}
         }
     }

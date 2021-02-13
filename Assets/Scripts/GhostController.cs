@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum GhostType
 {
@@ -18,11 +19,14 @@ public class GhostController : MonoBehaviour
     private Vector3 direction;
     private Rigidbody rigidbody;
 
+    private NavMeshAgent meshAgent;
+
     // Start is called before the first frame update
     void Start()
     {
         transform.parent = null;
         rigidbody = GetComponent<Rigidbody>();
+        meshAgent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
@@ -34,9 +38,11 @@ public class GhostController : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y + 90f, direction.z));
         float xDistance = Mathf.Abs(transform.position.x - Player.position.x);
         float zDistance = Mathf.Abs(transform.position.z - Player.position.z);
-        if (xDistance < 8f || zDistance < 8f)
+        //print(xDistance);
+        if (xDistance < 8f && zDistance < 8f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, Player.position, 1 * Time.deltaTime);
+            //transform.position = Vector3.MoveTowards(transform.position, Player.position, 1 * Time.deltaTime);
+            meshAgent.SetDestination(Player.transform.position);
         }
         
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);

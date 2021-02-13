@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8789639683603084242}
   - component: {fileID: 2635217248718568179}
   - component: {fileID: 134751226905292098}
+  - component: {fileID: -1878192859593234164}
   m_Layer: 0
   m_Name: Ghost1
   m_TagString: enemy
@@ -28,9 +29,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2871110868839065485}
-  m_LocalRotation: {x: -0.72130793, y: -0.008520531, z: -0.008874914, w: 0.6925053}
-  m_LocalPosition: {x: 92.12, y: 1.12, z: 109.93}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalRotation: {x: -0.7213068, y: -0.008521454, z: -0.00887585, w: 0.6925064}
+  m_LocalPosition: {x: 92.132, y: 1.12, z: 109.93}
+  m_LocalScale: {x: 0.10700001, y: 0.10700001, z: 0.10700001}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -100,7 +101,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 90
   m_CollisionDetection: 0
 --- !u!65 &2635217248718568179
 BoxCollider:
@@ -127,4 +128,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221289851584ff34bae33f347eba487d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 3674240939468353440, guid: fd3268aa2ddca6342a8ec8f3262ff143, type: 3}
+  Player: {fileID: 5804890639061311754, guid: d67deab212c488346acdcd30e1bc26b7, type: 3}
+--- !u!195 &-1878192859593234164
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871110868839065485}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 4.87
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 1
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 6.83
+  m_BaseOffset: -0.24
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
