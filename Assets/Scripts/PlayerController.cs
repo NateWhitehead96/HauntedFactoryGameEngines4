@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public int maxHealth = 10;
     public static int currentHealth = 10;
     public Slider healthBar;
+    public Canvas pauseCanvas;
 
     // Room completion tally
     public static int levelsComplete;
@@ -47,6 +48,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        pauseCanvas.gameObject.SetActive(false);
         if(SceneManager.GetSceneByName("TutorialLevel") == SceneManager.GetActiveScene())
         {
             currentHealth = maxHealth;
@@ -56,7 +58,7 @@ public class PlayerController : MonoBehaviour
         healthBar.value = currentHealth;
         print(levelsComplete);
     }
-
+    ///////////////////////// INPUT SYSTEM /////////////////////////////
     public void OnMove(InputValue value)
     {
         moveVector = value.Get<Vector2>();
@@ -81,6 +83,15 @@ public class PlayerController : MonoBehaviour
        
     }
 
+    public void OnPause(InputValue pressed)
+    {
+        if(pressed.isPressed)
+        {
+            pauseCanvas.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
+    }
+    ///////////////////////// INPUT SYSTEM /////////////////////////////
     private void Update()
     {
         moveDirection = -playerTransform.forward * moveVector.y + -playerTransform.right * moveVector.x; // get players move direction (inverted vectors because blender screws up rotations
@@ -106,7 +117,14 @@ public class PlayerController : MonoBehaviour
             SceneManager.LoadScene("LoseScreen");
         }
     }
-
+    // --------------- Public Functions ----------------- //
+    public void GetHurt()
+    {
+        if(isHurting == false)
+        {
+            StartCoroutine(Hurting());
+        }
+    }
     IEnumerator Fire()
     {
         isFiring = true;
@@ -158,7 +176,7 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("enemy") && isHurting == false)
         {
             Debug.Log("Enemy hitting messa");
-            StartCoroutine(Hurting());
+            
         }
     }
 }

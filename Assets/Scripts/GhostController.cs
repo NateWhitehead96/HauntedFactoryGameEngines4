@@ -21,12 +21,17 @@ public class GhostController : MonoBehaviour
 
     private NavMeshAgent meshAgent;
 
+    private Animator animator;
+    public bool inAction;
+
     // Start is called before the first frame update
     void Start()
     {
         transform.parent = null;
+        inAction = false;
         rigidbody = GetComponent<Rigidbody>();
         meshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
@@ -35,15 +40,18 @@ public class GhostController : MonoBehaviour
     {
         direction = Player.position - rigidbody.position;
         direction.Normalize();
-        transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y + 90f, direction.z));
+        transform.rotation = Quaternion.LookRotation(new Vector3(direction.x, direction.y, direction.z));
         float xDistance = Mathf.Abs(transform.position.x - Player.position.x);
         float zDistance = Mathf.Abs(transform.position.z - Player.position.z);
         //print(xDistance);
-        if (xDistance < 8f && zDistance < 8f)
+        if (xDistance < 8f && zDistance < 8f && inAction == false)
         {
             //transform.position = Vector3.MoveTowards(transform.position, Player.position, 1 * Time.deltaTime);
             meshAgent.SetDestination(Player.transform.position);
+            animator.SetBool("Moving", true);
         }
+        else
+            animator.SetBool("Moving", false);
         
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
         //transform.rotation = Quaternion.Euler(targetDirection.x, targetDirection.y, targetDirection.z);
@@ -55,6 +63,27 @@ public class GhostController : MonoBehaviour
         if (other.gameObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+        {
+            inAction = true;
+            animator.SetBool("Moving", false);
+            animator.SetBool("Attacking", true);
+            collision.gameObject.GetComponent<PlayerController>().GetHurt();
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            //animator.SetBool("Moving", false);
+            inAction = false;
+            animator.SetBool("Attacking", false);
         }
     }
 }

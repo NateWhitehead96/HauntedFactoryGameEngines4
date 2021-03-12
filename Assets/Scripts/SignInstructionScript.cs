@@ -26,6 +26,11 @@ public class SignInstructionScript : MonoBehaviour
             displayText.gameObject.SetActive(true);
             displayText.text = "Ghosts have taken over, you must find the power generator and turn it back on to eradicate the paranormal entities! Also use left click or the A button to fire.";
         }
+        if (signNumber == 3 && other.gameObject.CompareTag("Player"))
+        {
+            displayText.gameObject.SetActive(true);
+            displayText.text = "These are the ghost types, green the average ghost, red the heavy, and white the ranger. Be careful watchman!";
+        }
     }
 
     private void OnTriggerExit(Collider other)

@@ -9,7 +9,7 @@ public class LevelMover : MonoBehaviour
     {
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialLevel") && other.gameObject.CompareTag("Player"))
         {
-            int randomLevel = Random.Range(0, 2);
+            int randomLevel = Random.Range(0, 3);
             if(randomLevel == 0)
             {
                 // open level 1
@@ -29,7 +29,7 @@ public class LevelMover : MonoBehaviour
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1") && other.gameObject.CompareTag("Player"))
         {
-            int randomLevel = Random.Range(0, 1);
+            int randomLevel = Random.Range(0, 2);
             PlayerController.levelsComplete += 1;
             if(randomLevel == 0)
             {
@@ -42,7 +42,7 @@ public class LevelMover : MonoBehaviour
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2") && other.gameObject.CompareTag("Player"))
         {
-            int randomLevel = Random.Range(0, 1);
+            int randomLevel = Random.Range(0, 2);
             PlayerController.levelsComplete += 1;
             if (randomLevel == 0)
             {
@@ -54,7 +54,7 @@ public class LevelMover : MonoBehaviour
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level3") && other.gameObject.CompareTag("Player"))
         {
-            int randomLevel = Random.Range(0, 1);
+            int randomLevel = Random.Range(0, 2);
             PlayerController.levelsComplete += 1;
             if (randomLevel == 0)
             {
