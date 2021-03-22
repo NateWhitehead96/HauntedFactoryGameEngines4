@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class RoomBehaviour : MonoBehaviour
 {
     public GameObject[] spawnPoints;
-    public GameObject Ghost;
+    public GameObject[] Ghost;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,8 +16,10 @@ public class RoomBehaviour : MonoBehaviour
             //int spawnChance = Random.Range(0, 1);
             //if(spawnChance == 1)
             //{
-                //Instantiate(Ghost, spawnPoints[i].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
-            Instantiate(Ghost, spawnPoints[i].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+            //Instantiate(Ghost, spawnPoints[i].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
+
+            int ghostChoice = Random.Range(0, Ghost.Length);
+            Instantiate(Ghost[ghostChoice], spawnPoints[i].transform.position, Quaternion.Euler(new Vector3(-90, 0, 0)));
             //}
         }
     }

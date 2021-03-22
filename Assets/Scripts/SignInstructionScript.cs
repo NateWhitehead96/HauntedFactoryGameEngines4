@@ -29,7 +29,17 @@ public class SignInstructionScript : MonoBehaviour
         if (signNumber == 3 && other.gameObject.CompareTag("Player"))
         {
             displayText.gameObject.SetActive(true);
-            displayText.text = "These are the ghost types, green the average ghost, red the heavy, and white the ranger. Be careful watchman!";
+            displayText.text = "These are the ghost types, green the average ghost, red the heavy, and white the fast mover. Be careful watchman!";
+        }
+        if (signNumber == 4 && other.gameObject.CompareTag("Player"))
+        {
+            displayText.gameObject.SetActive(true);
+            displayText.text = "These are the pickup types. Red, full heal. Green, faster shooting. Blue, more damage!";
+        }
+        if (signNumber == 5 && other.gameObject.CompareTag("Player"))
+        {
+            displayText.gameObject.SetActive(true);
+            displayText.text = "These purple lights will save your progress when you step into them. Progress is also saved everytime you go up stairs.";
         }
     }
 

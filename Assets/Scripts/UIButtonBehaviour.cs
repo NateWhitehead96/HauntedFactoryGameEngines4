@@ -32,4 +32,36 @@ public class UIButtonBehaviour : MonoBehaviour
         Time.timeScale = 1;
         gameObject.SetActive(false);
     }
+
+    public void OnLoad()
+    {
+        print("Loading");
+        if (PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            //PlayerController.currentLevel = PlayerPrefs.GetInt("CurrentLevel");
+            //PlayerController.levelsComplete = PlayerPrefs.GetInt("LevelsComplete");
+            //PlayerController.currentHealth = PlayerPrefs.GetInt("CurrentHealth");
+            //PlayerController.Damage = PlayerPrefs.GetInt("Damage");
+            //PlayerController.AttackSpeed = PlayerPrefs.GetFloat("AttackSpeed");
+            if(PlayerPrefs.GetInt("CurrentLevel") == 1)
+            {
+                SceneManager.LoadScene("Level1");
+            }
+            if (PlayerPrefs.GetInt("CurrentLevel") == 2)
+            {
+                SceneManager.LoadScene("Level2");
+            }
+            if (PlayerPrefs.GetInt("CurrentLevel") == 3)
+            {
+                SceneManager.LoadScene("Level3");
+            }
+        }
+        else
+            OnPlay();
+    }
+
+    public void OnResetSave()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }

@@ -24,6 +24,8 @@ public class GhostController : MonoBehaviour
     private Animator animator;
     public bool inAction;
 
+    [SerializeField] private int Health;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +46,7 @@ public class GhostController : MonoBehaviour
         float xDistance = Mathf.Abs(transform.position.x - Player.position.x);
         float zDistance = Mathf.Abs(transform.position.z - Player.position.z);
         //print(xDistance);
-        if (xDistance < 8f && zDistance < 8f && inAction == false)
+        if (xDistance < 10f && zDistance < 10f && inAction == false)
         {
             //transform.position = Vector3.MoveTowards(transform.position, Player.position, 1 * Time.deltaTime);
             meshAgent.SetDestination(Player.transform.position);
@@ -55,6 +57,10 @@ public class GhostController : MonoBehaviour
         
         //transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
         //transform.rotation = Quaternion.Euler(targetDirection.x, targetDirection.y, targetDirection.z);
+        if(Health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -62,7 +68,8 @@ public class GhostController : MonoBehaviour
         Debug.Log("Enemy hit");
         if (other.gameObject.CompareTag("Projectile"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            Health -= PlayerController.Damage;
         }
     }
 

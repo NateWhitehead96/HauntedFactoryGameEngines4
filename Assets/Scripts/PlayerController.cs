@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public InputAction fireInput;
     public Transform bulletSpot;
     public GameObject projectile;
+    public static float AttackSpeed = 1f;
+    public static int Damage = 1;
     // UI Variables
     public int maxHealth = 10;
     public static int currentHealth = 10;
@@ -39,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     // Room completion tally
     public static int levelsComplete;
+    public static int currentLevel;
     private void Awake()
     {
         playerTransform = transform;
@@ -48,6 +51,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Start()
     {
+        LoadAllSavedData();
         pauseCanvas.gameObject.SetActive(false);
         if(SceneManager.GetSceneByName("TutorialLevel") == SceneManager.GetActiveScene())
         {
@@ -130,7 +134,7 @@ public class PlayerController : MonoBehaviour
         isFiring = true;
         playerAnimator.SetBool("IsShooting", true);
         flashlight.intensity = 5;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(AttackSpeed);
         projectile = ProjectilePool.Instance.GetBullet();
         if(projectile != null)
         {
@@ -178,5 +182,18 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Enemy hitting messa");
             
         }
+    }
+
+    private void LoadAllSavedData()
+    {
+        if(PlayerPrefs.HasKey("CurrentLevel"))
+        {
+            currentLevel = PlayerPrefs.GetInt("CurrentLevel");
+            levelsComplete = PlayerPrefs.GetInt("LevelsComplete");
+            currentHealth = PlayerPrefs.GetInt("CurrentHealth");
+            Damage = PlayerPrefs.GetInt("Damage");
+            AttackSpeed = PlayerPrefs.GetFloat("AttackSpeed");
+        }
+        
     }
 }

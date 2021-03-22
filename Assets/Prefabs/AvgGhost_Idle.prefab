@@ -581,6 +581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 5804890639061311754, guid: d67deab212c488346acdcd30e1bc26b7, type: 3}
   inAction: 0
+  Health: 2
 --- !u!1 &8323346084718153167
 GameObject:
   m_ObjectHideFlags: 0
