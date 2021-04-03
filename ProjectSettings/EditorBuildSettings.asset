@@ -21,9 +21,18 @@ EditorBuildSettings:
     path: Assets/Scenes/Level3.unity
     guid: 6c935c20002ed7041985df962ebef373
   - enabled: 1
+    path: Assets/Scenes/FinalLevel.unity
+    guid: edb68fcb3d73f994c9f85881c9712fa7
+  - enabled: 1
     path: Assets/Scenes/LoseScreen.unity
     guid: 5c50a7dd6f7833542b34dd293f3aec33
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: ee67a9e56149b0f42b8f6aed44d872f4
+  - enabled: 1
+    path: Assets/Scenes/TurnOnGenerator.unity
+    guid: 35f84f5fe68602f49a16c2648db39234
+  - enabled: 1
+    path: Assets/Scenes/TurnOffGenerator.unity
+    guid: 9290305274b14824f8ccb2a28cf69712
   m_configObjects: {}

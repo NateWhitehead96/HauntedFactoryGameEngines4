@@ -7,6 +7,7 @@ public class LevelMover : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
+        //LastLevel();
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("TutorialLevel") && other.gameObject.CompareTag("Player"))
         {
             int randomLevel = Random.Range(0, 3);
@@ -32,6 +33,14 @@ public class LevelMover : MonoBehaviour
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level1") && other.gameObject.CompareTag("Player"))
         {
+            //LastLevel();
+            if (PlayerController.levelsComplete >= 5)
+            {
+                PlayerController.currentLevel = 4;
+                QuickSave();
+                SceneManager.LoadScene("FinalLevel");
+                return;
+            }
             int randomLevel = Random.Range(0, 2);
             PlayerController.levelsComplete += 1;
             if (randomLevel == 0)
@@ -50,6 +59,14 @@ public class LevelMover : MonoBehaviour
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level2") && other.gameObject.CompareTag("Player"))
         {
+            //LastLevel();
+            if (PlayerController.levelsComplete >= 5)
+            {
+                PlayerController.currentLevel = 4;
+                QuickSave();
+                SceneManager.LoadScene("FinalLevel");
+                return;
+            }
             int randomLevel = Random.Range(0, 2);
             PlayerController.levelsComplete += 1;
             if (randomLevel == 0)
@@ -68,6 +85,14 @@ public class LevelMover : MonoBehaviour
         }
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Level3") && other.gameObject.CompareTag("Player"))
         {
+            //LastLevel();
+            if (PlayerController.levelsComplete >= 5)
+            {
+                PlayerController.currentLevel = 4;
+                QuickSave();
+                SceneManager.LoadScene("FinalLevel");
+                return;
+            }
             int randomLevel = Random.Range(0, 2);
             PlayerController.levelsComplete += 1;
             if (randomLevel == 0)
@@ -95,5 +120,17 @@ public class LevelMover : MonoBehaviour
         PlayerPrefs.SetInt("CurrentHealth", PlayerController.currentHealth);
         PlayerPrefs.SetInt("Damage", PlayerController.Damage);
         PlayerPrefs.SetFloat("AttackSpeed", PlayerController.AttackSpeed);
+    }
+
+    private void LastLevel()
+    {
+        print("Getting last?");
+        if(PlayerController.levelsComplete >= 5)
+        {
+            PlayerController.currentLevel = 4;
+            QuickSave();
+            SceneManager.LoadScene("FinalLevel");
+            return;
+        }
     }
 }

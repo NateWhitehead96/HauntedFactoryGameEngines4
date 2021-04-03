@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public enum GhostType
 {
@@ -25,6 +26,7 @@ public class GhostController : MonoBehaviour
     public bool inAction;
 
     [SerializeField] private int Health;
+    [SerializeField] private float DistanceToPlayer = 10f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,10 @@ public class GhostController : MonoBehaviour
         meshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         Player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        if (SceneManager.GetSceneByName("FinalLevel") == SceneManager.GetActiveScene())
+        {
+            DistanceToPlayer = 200f;
+        }
     }
 
     // Update is called once per frame
@@ -46,7 +52,7 @@ public class GhostController : MonoBehaviour
         float xDistance = Mathf.Abs(transform.position.x - Player.position.x);
         float zDistance = Mathf.Abs(transform.position.z - Player.position.z);
         //print(xDistance);
-        if (xDistance < 10f && zDistance < 10f && inAction == false)
+        if (xDistance < DistanceToPlayer && zDistance < DistanceToPlayer && inAction == false)
         {
             //transform.position = Vector3.MoveTowards(transform.position, Player.position, 1 * Time.deltaTime);
             meshAgent.SetDestination(Player.transform.position);

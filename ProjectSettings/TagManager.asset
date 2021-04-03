@@ -9,6 +9,7 @@ TagManager:
   - DeathPlane
   - enemy
   - Projectile
+  - Button
   layers:
   - Default
   - TransparentFX
