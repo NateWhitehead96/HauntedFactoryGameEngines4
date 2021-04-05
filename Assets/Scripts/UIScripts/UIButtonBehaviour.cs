@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class UIButtonBehaviour : MonoBehaviour
 {
+    public Animator Transition;
+   
     public void OnReturn()
     {
         Time.timeScale = 1;
+        StartCoroutine(Fade());
         SceneManager.LoadScene("MainMenu");
     }
 
@@ -15,16 +19,19 @@ public class UIButtonBehaviour : MonoBehaviour
     {
         // will first check player pref for what level you are on but for now just load tutorial level
         Destroy(FindObjectOfType<MenuMusicScript>().gameObject);
+        StartCoroutine(Fade());
         SceneManager.LoadScene("TutorialLevel");
     }
 
     public void OnCredits()
     {
+        StartCoroutine(Fade());
         SceneManager.LoadScene("Credits");
     }
 
     public void OnExit()
     {
+        StartCoroutine(Fade());
         Application.Quit();
     }
 
@@ -37,6 +44,7 @@ public class UIButtonBehaviour : MonoBehaviour
     public void OnLoad()
     {
         print("Loading");
+        StartCoroutine(Fade());
         Destroy(FindObjectOfType<MenuMusicScript>().gameObject);
         if (PlayerPrefs.HasKey("CurrentLevel"))
         {
@@ -73,11 +81,19 @@ public class UIButtonBehaviour : MonoBehaviour
 
     public void TurnOnPower()
     {
+        StartCoroutine(Fade());
         SceneManager.LoadScene("TurnOnGenerator");
     }
 
     public void DontTurnPower()
     {
+        StartCoroutine(Fade());
         SceneManager.LoadScene("TurnOffGenerator");
+    }
+
+    IEnumerator Fade()
+    {
+        Transition.SetBool("SceneExit", true);
+        yield return new WaitForSeconds(10);
     }
 }

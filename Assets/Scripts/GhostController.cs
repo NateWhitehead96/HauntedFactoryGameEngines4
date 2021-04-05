@@ -28,6 +28,9 @@ public class GhostController : MonoBehaviour
     [SerializeField] private int Health;
     [SerializeField] private float DistanceToPlayer = 10f;
 
+    public GameObject DeathEffect;
+    public AudioSource DeathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,7 +68,10 @@ public class GhostController : MonoBehaviour
         //transform.rotation = Quaternion.Euler(targetDirection.x, targetDirection.y, targetDirection.z);
         if(Health <= 0)
         {
-            Destroy(gameObject);
+            Instantiate(DeathEffect, transform.position, Quaternion.identity);
+            
+            StartCoroutine(Death());
+            
         }
     }
 
@@ -98,5 +104,13 @@ public class GhostController : MonoBehaviour
             inAction = false;
             animator.SetBool("Attacking", false);
         }
+    }
+
+    IEnumerator Death()
+    {
+        inAction = true;
+        yield return new WaitForSeconds(1);
+        DeathSound.Play();
+        Destroy(gameObject);
     }
 }
