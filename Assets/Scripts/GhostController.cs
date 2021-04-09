@@ -68,8 +68,8 @@ public class GhostController : MonoBehaviour
         //transform.rotation = Quaternion.Euler(targetDirection.x, targetDirection.y, targetDirection.z);
         if(Health <= 0)
         {
+            DeathSound.Play();
             Instantiate(DeathEffect, transform.position, Quaternion.identity);
-            
             StartCoroutine(Death());
             
         }
@@ -110,7 +110,7 @@ public class GhostController : MonoBehaviour
     {
         inAction = true;
         yield return new WaitForSeconds(1);
-        DeathSound.Play();
+        
         Destroy(gameObject);
     }
 }

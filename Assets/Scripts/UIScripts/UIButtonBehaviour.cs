@@ -81,13 +81,13 @@ public class UIButtonBehaviour : MonoBehaviour
 
     public void TurnOnPower()
     {
-        StartCoroutine(Fade());
+        //StartCoroutine(Fade());
         SceneManager.LoadScene("TurnOnGenerator");
     }
 
     public void DontTurnPower()
     {
-        StartCoroutine(Fade());
+        //StartCoroutine(Fade());
         SceneManager.LoadScene("TurnOffGenerator");
     }
 
